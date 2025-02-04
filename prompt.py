@@ -23,7 +23,7 @@ prompts = [
         "prompt": """leaps = [year for year in range(2000, 3001)
             if year % 4 == 0 and year % 100 != 0 or year % 400 == 0]
 print(leaps)""",
-        "password": "pass1"
+        "password": "5372"
     },
     {
         "title": "코드 버그 수정",
@@ -38,7 +38,7 @@ else:
     print("어린이입니다. 보살핌이 필요합니다.")
 
 Print("감사합니다. " + name + "님!")""",
-        "password": "pass2"
+        "password": "2135"
     },
     {
         "title": "코드 효율성 향상",
@@ -51,7 +51,7 @@ def has_sum_k(nums: List[int], k: int) -> bool:
             if nums[i] + nums[j] == k:
                 return True
     return False""",
-        "password": "pass3"
+        "password": "6998"
     },
     {
         "title": "코드 작성",
@@ -62,14 +62,14 @@ def has_sum_k(nums: List[int], k: int) -> bool:
 3. matplotlib 라이브러리를 사용하여 각 친구의 키를 보여주는 막대그래프를 그립니다.
 4. 막대그래프에는 전체 친구들의 평균 키를 나타내는 실선을 추가합니다.
 5. 코드의 각 부분에 대해 간단한 설명을 주석으로 추가합니다.""",
-        "password": "pass4"
+        "password": "4773"
     },
     {
         "title": "코드 변환",
         "prompt": """leaps = [year for year in range(2000, 3001)
             if year % 4 == 0 and year % 100 != 0 or year % 400 == 0]
 print(leaps)""",
-        "password": "pass5"
+        "password": "4767"
     },
     {
         "title": "영어 단어 공부 챗봇",
@@ -96,7 +96,7 @@ print(leaps)""",
 5. (2), (3), (4) 단계를 마치면 새로운 단어를 공부할지 물어봅니다.
 
 당신의 모든 설명은 한국어로 하세요.""",
-        "password": "pass6"
+        "password": "3839"
     },
     {
         "title": "영어 문장 수정",
@@ -116,7 +116,7 @@ print(leaps)""",
 대체 표현 : [제가 입력한 문장과 비슷한 표현을 추천]
 답변 : [제가 입력한 문장에 대한 당신의 답을 영어로 출력]
 해석 : [당신의 답변에 대한 한국어 해석을 출력]""",
-        "password": "pass7"
+        "password": "3207"
     },
     {
         "title": "한식당 챗봇",
@@ -145,7 +145,7 @@ print(leaps)""",
 최종 확인 시, 고객이 주문한 메뉴와 해당 메뉴의 가격을 다시 확인하여 오류가 없는지 검토하세요. 메뉴 가격이나 최종 합계 계산이 틀렸다면 수정 후 총 합계를 고객에게 알려줍니다.
 
 최종 주문을 확인한 후 고객에게 픽업인지 배달인지 묻습니다. 배달인 경우 주소를 묻습니다. 마지막으로 결제를 진행합니다. 결제 방식으로는 현금 결제, 신용카드 결제, 모바일 결제가 있습니다. 이 중 고객이 원하는 결제 방식으로 결제를 처리합니다. 대화식이고 친근한 스타일로 간단하게 대답합니다.""",
-        "password": "pass8"
+        "password": "9408"
     },
     {
         "title": "액션 메뉴 만들기",
@@ -162,7 +162,7 @@ print(leaps)""",
 3. 각 작업(개요 확장 또는 글 작성)이 완료되면, "다음 작업할 글머리 번호를 입력해 주세요."라고 물어보세요.
 
 주제: 지구 온난화의 위험성""",
-        "password": "pass9"
+        "password": "5114"
     }
 ]
 
