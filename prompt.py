@@ -16,17 +16,19 @@ st.markdown(
 )
 
 # 프롬프트들을 딕셔너리의 리스트로 정의 (원본의 줄바꿈과 공백을 유지)
-# 재배열된 순서 및 순차적인 비밀번호(pass1 ~ pass9)로 수정했습니다.
+# 각 프롬프트에 'group' 키를 추가하여 사이드바 그룹핑에 활용합니다.
 prompts = [
     {
         "title": "코드 설명",
+        "group": "코드",
         "prompt": """leaps = [year for year in range(2000, 3001)
-            if year % 4 == 0 and year % 100 != 0 or year % 400 == 0]
+    if year % 4 == 0 and year % 100 != 0 or year % 400 == 0]
 print(leaps)""",
         "password": "5372"
     },
     {
         "title": "코드 버그 수정",
+        "group": "코드",
         "prompt": """name = input("이름을 입력하세요: ")
 age = input("나이를 입력하세요: ")
 
@@ -40,21 +42,9 @@ else:
 Print("감사합니다. " + name + "님!")""",
         "password": "2135"
     },
-    #{
-    #    "title": "코드 효율성 향상",
-    #    "prompt": """from typing import List
-    #           
-#def has_sum_k(nums: List[int], k: int) -> bool:
-#   n = len(nums)
-#    for i in range(n):
-#        for j in range(i+1, n):
-#            if nums[i] + nums[j] == k:
-#                return True
-#    return False""",
-#        "password": "6918"
-#    },
     {
         "title": "코드 작성",
+        "group": "코드",
         "prompt": """우리 반 친구들의 키 데이터를 이용해서 평균 키를 구하고, 각 친구의 키를 막대그래프로 나타내는 파이썬 코드를 작성하세요. 이를 위해 다음 단계를 수행합니다.
 1. 미리 준비된 리스트에 친구들의 키 데이터를 저장합니다.
    예시: heights = [125, 137, 142, 159, 132, 135, 150, 148]
@@ -66,13 +56,15 @@ Print("감사합니다. " + name + "님!")""",
     },
     {
         "title": "코드 변환",
+        "group": "코드",
         "prompt": """leaps = [year for year in range(2000, 3001)
-            if year % 4 == 0 and year % 100 != 0 or year % 400 == 0]
+    if year % 4 == 0 and year % 100 != 0 or year % 400 == 0]
 print(leaps)""",
         "password": "1072"
     },
     {
         "title": "영어 단어 공부 챗봇",
+        "group": "챗봇",
         "prompt": """당신은 영어 단어를 재미있고 효과적으로 배울 수 있도록 도와주는 친근하고 격려하는 영어 선생님입니다.
 
 ## 지침
@@ -100,6 +92,7 @@ print(leaps)""",
     },
     {
         "title": "영어 문장 수정",
+        "group": "챗봇",
         "prompt": """사용자의 요청에 다음 사항을 기반해서 답하세요.
 
 # 지시문
@@ -120,6 +113,7 @@ print(leaps)""",
     },
     {
         "title": "한식당 챗봇",
+        "group": "챗봇",
         "prompt": """당신은 한식당을 위한 자동 주문봇입니다. 먼저 고객에게 인사를 한 뒤 메뉴를 보여줍니다. 음식 메뉴는 다음과 같습니다.
 
 [메인 메뉴]
@@ -149,6 +143,7 @@ print(leaps)""",
     },
     {
         "title": "액션 메뉴 만들기",
+        "group": "액션 메뉴 만들기",  # 상위 분류로 그대로 사용
         "prompt": """제가 입력한 주제에 대해 먼저 글머리 번호(예: 1, 2, 3)로 구성한 개요를 생성합니다. 이후, 제가 입력하는 명령에 따라 아래 두 작업 중 반드시 하나만 수행합니다. 한 번에 두 가지 작업(개요 확장과 본문 글 작성)을 동시에 수행하지 않도록 주의하세요.
 
 명령 규칙:
@@ -168,9 +163,26 @@ print(leaps)""",
 
 # 사이드바에 프롬프트 제목 목록(목차) 생성
 st.sidebar.title("프롬프트 목록")
+
+# Markdown 문자열을 생성하여 그룹별로 목록을 구성합니다.
+sidebar_markdown = ""
+# 우선 출력할 그룹 순서를 정의합니다.
+group_order = ["코드", "챗봇"]
+
+# group_order에 해당하는 상위 분류 및 하위 항목 출력
+for group in group_order:
+    sidebar_markdown += f"- **{group}**\n"
+    for i, item in enumerate(prompts):
+        if item.get("group") == group:
+            # 하위 항목은 들여쓰기(네 칸 혹은 두 탭)로 구분합니다.
+            sidebar_markdown += f"    - [{item['title']}](#prompt-{i})\n"
+
+# 그룹에 속하지 않는 프롬프트는 상위 항목으로 그대로 출력 (여기서는 '액션 메뉴 만들기')
 for i, item in enumerate(prompts):
-    # HTML 앵커 링크를 사용해 같은 페이지 내 해당 부분으로 스크롤
-    st.sidebar.markdown(f"[{item['title']}](#prompt-{i})", unsafe_allow_html=True)
+    if item.get("group") not in group_order:
+        sidebar_markdown += f"- [{item['title']}](#prompt-{i})\n"
+
+st.sidebar.markdown(sidebar_markdown, unsafe_allow_html=True)
 
 # 메인 타이틀 (페이지 제목)
 st.title("A2I 실습 프롬프트")
