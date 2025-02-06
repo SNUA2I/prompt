@@ -40,19 +40,19 @@ else:
 Print("감사합니다. " + name + "님!")""",
         "password": "2135"
     },
-    {
-        "title": "코드 효율성 향상",
-        "prompt": """from typing import List
-               
-def has_sum_k(nums: List[int], k: int) -> bool:
-   n = len(nums)
-    for i in range(n):
-        for j in range(i+1, n):
-            if nums[i] + nums[j] == k:
-                return True
-    return False""",
-        "password": "6918"
-    },
+    #{
+    #    "title": "코드 효율성 향상",
+    #    "prompt": """from typing import List
+    #           
+#def has_sum_k(nums: List[int], k: int) -> bool:
+#   n = len(nums)
+#    for i in range(n):
+#        for j in range(i+1, n):
+#            if nums[i] + nums[j] == k:
+#                return True
+#    return False""",
+#        "password": "6918"
+#    },
     {
         "title": "코드 작성",
         "prompt": """우리 반 친구들의 키 데이터를 이용해서 평균 키를 구하고, 각 친구의 키를 막대그래프로 나타내는 파이썬 코드를 작성하세요. 이를 위해 다음 단계를 수행합니다.
@@ -69,7 +69,7 @@ def has_sum_k(nums: List[int], k: int) -> bool:
         "prompt": """leaps = [year for year in range(2000, 3001)
             if year % 4 == 0 and year % 100 != 0 or year % 400 == 0]
 print(leaps)""",
-        "password": "4763"
+        "password": "1072"
     },
     {
         "title": "영어 단어 공부 챗봇",
