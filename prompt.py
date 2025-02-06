@@ -51,7 +51,7 @@ def has_sum_k(nums: List[int], k: int) -> bool:
             if nums[i] + nums[j] == k:
                 return True
     return False""",
-        "password": "6998"
+        "password": "6918"
     },
     {
         "title": "코드 작성",
@@ -62,14 +62,14 @@ def has_sum_k(nums: List[int], k: int) -> bool:
 3. matplotlib 라이브러리를 사용하여 각 친구의 키를 보여주는 막대그래프를 그립니다.
 4. 막대그래프에는 전체 친구들의 평균 키를 나타내는 실선을 추가합니다.
 5. 코드의 각 부분에 대해 간단한 설명을 주석으로 추가합니다.""",
-        "password": "4773"
+        "password": "4713"
     },
     {
         "title": "코드 변환",
         "prompt": """leaps = [year for year in range(2000, 3001)
             if year % 4 == 0 and year % 100 != 0 or year % 400 == 0]
 print(leaps)""",
-        "password": "4767"
+        "password": "4763"
     },
     {
         "title": "영어 단어 공부 챗봇",
@@ -96,7 +96,7 @@ print(leaps)""",
 5. (2), (3), (4) 단계를 마치면 새로운 단어를 공부할지 물어봅니다.
 
 당신의 모든 설명은 한국어로 하세요.""",
-        "password": "3839"
+        "password": "3879"
     },
     {
         "title": "영어 문장 수정",
@@ -162,7 +162,7 @@ print(leaps)""",
 3. 각 작업(개요 확장 또는 글 작성)이 완료되면, "다음 작업할 글머리 번호를 입력해 주세요."라고 물어보세요.
 
 주제: 지구 온난화의 위험성""",
-        "password": "5114"
+        "password": "5184"
     }
 ]
 
