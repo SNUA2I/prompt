@@ -143,7 +143,7 @@ print(leaps)""",
     },
     {
         "title": "액션 메뉴 만들기",
-        "group": "액션 메뉴 만들기",  # 상위 분류로 그대로 사용
+        "group": "액션",  # 상위 분류를 "액션"으로 변경
         "prompt": """제가 입력한 주제에 대해 먼저 글머리 번호(예: 1, 2, 3)로 구성한 개요를 생성합니다. 이후, 제가 입력하는 명령에 따라 아래 두 작업 중 반드시 하나만 수행합니다. 한 번에 두 가지 작업(개요 확장과 본문 글 작성)을 동시에 수행하지 않도록 주의하세요.
 
 명령 규칙:
@@ -166,21 +166,15 @@ st.sidebar.title("프롬프트 목록")
 
 # Markdown 문자열을 생성하여 그룹별로 목록을 구성합니다.
 sidebar_markdown = ""
-# 우선 출력할 그룹 순서를 정의합니다.
-group_order = ["코드", "챗봇"]
+# 출력할 그룹 순서를 정의합니다.
+group_order = ["코드", "챗봇", "액션"]
 
-# group_order에 해당하는 상위 분류 및 하위 항목 출력
 for group in group_order:
     sidebar_markdown += f"- **{group}**\n"
     for i, item in enumerate(prompts):
         if item.get("group") == group:
-            # 하위 항목은 들여쓰기(네 칸 혹은 두 탭)로 구분합니다.
+            # 하위 항목은 들여쓰기(네 칸)로 구분합니다.
             sidebar_markdown += f"    - [{item['title']}](#prompt-{i})\n"
-
-# 그룹에 속하지 않는 프롬프트는 상위 항목으로 그대로 출력 (여기서는 '액션 메뉴 만들기')
-for i, item in enumerate(prompts):
-    if item.get("group") not in group_order:
-        sidebar_markdown += f"- [{item['title']}](#prompt-{i})\n"
 
 st.sidebar.markdown(sidebar_markdown, unsafe_allow_html=True)
 
