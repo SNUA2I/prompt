@@ -131,7 +131,7 @@ if 'password_verified' not in st.session_state:
 
 if not st.session_state.password_verified:
     st.title("A2I 실습 프롬프트")
-    st.markdown("아래에 비밀번호를 입력하시면 모든 프롬프트를 확인하실 수 있습니다.")
+    st.markdown("프롬프트 엔지니어링 학습을 위한 실습 프롬프트")
     user_password = st.text_input("비밀번호를 입력하세요:", type="password")
     if user_password == PASSWORD:
         st.session_state.password_verified = True
