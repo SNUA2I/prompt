@@ -1,10 +1,10 @@
 import streamlit as st
 import textwrap
 
-# 페이지 설정: 제목 및 레이아웃
+# 페이지 설정
 st.set_page_config(page_title="A2I 실습 프롬프트", layout="wide")
 
-# 부드러운 스크롤링 효과를 위한 CSS
+# CSS: 부드러운 스크롤링 효과
 st.markdown(
     """
     <style>
@@ -15,20 +15,20 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-# 프롬프트들을 딕셔너리의 리스트로 정의 (원본의 줄바꿈과 공백을 유지)
-# 여기서는 코드 그룹에 속하는 프롬프트들을 제외하고 챗봇 및 액션 그룹만 남깁니다.
+# 비밀번호 설정 (모든 프롬프트에 동일하게 적용)
+PASSWORD = "1111"
+
+# 프롬프트 목록 정의
 prompts = [
     {
         "title": "수학 게임 챗봇",
         "group": "챗봇",
-        "prompt": "수학 게임을 하겠습니다. 수의 범위와 어림하기 관련된 질문을 하고, 제가 정답을 맞출 때마다 점수를 증가시키세요. 틀리면 이유를 알기 쉽게 설명하세요. 문제를 내기 전에 수학 수준(초급, 중급, 고급)을 확인하고 난이도를 조절하세요. 올림, 내림, 반올림 문제 중에서 어떤 유형을 풀고 싶은지 선택하게 해주세요.",
-        "password": "1111"
+        "prompt": "수학 게임을 하겠습니다. 수의 범위와 어림하기 관련된 질문을 하고, 제가 정답을 맞출 때마다 점수를 증가시키세요. 틀리면 이유를 알기 쉽게 설명하세요. 문제를 내기 전에 수학 수준(초급, 중급, 고급)을 확인하고 난이도를 조절하세요. 올림, 내림, 반올림 문제 중에서 어떤 유형을 풀고 싶은지 선택하게 해주세요."
     },
     {
         "title": "영어 회화 챗봇",
         "group": "챗봇",
-        "prompt": "당신은 영어 회화 파트너입니다. 사용자가 대화 연습을 원하는 주제나 상황을 알려주면, 그에 맞는 영어 대화를 시작해주세요. 영어로 말한 뒤 영어의 뜻을 괄호 안에 적어주세요. 만일 사용자의 영어가 부적절하거나 더 나은 표현이 있다면 어떻게 영어로 표현하는지 가르쳐주세요. 그리고 사용자가 영어로 대답을 못하고 한국어로 대답을 하면 그 대답을 어떻게 영어로 할 수 있는지 알려주세요. 당신의 모든 설명은 한국어로 하세요.",
-        "password": "1111"
+        "prompt": "당신은 영어 회화 파트너입니다. 사용자가 대화 연습을 원하는 주제나 상황을 알려주면, 그에 맞는 영어 대화를 시작해주세요. 영어로 말한 뒤 영어의 뜻을 괄호 안에 적어주세요. 만일 사용자의 영어가 부적절하거나 더 나은 표현이 있다면 어떻게 영어로 표현하는지 가르쳐주세요. 그리고 사용자가 영어로 대답을 못하고 한국어로 대답을 하면 그 대답을 어떻게 영어로 할 수 있는지 알려주세요. 당신의 모든 설명은 한국어로 하세요."
     },
     {
         "title": "영어 단어 공부 챗봇",
@@ -55,8 +55,7 @@ prompts = [
 
 5. (2), (3), (4) 단계를 마치면 새로운 단어를 공부할지 물어봅니다.
 
-당신의 모든 설명은 한국어로 하세요.""",
-        "password": "1111"
+당신의 모든 설명은 한국어로 하세요."""
     },
     {
         "title": "영어 문장 수정",
@@ -76,8 +75,7 @@ prompts = [
 이유 : [그렇게 수정한 이유를 한국으로 출력]
 대체 표현 : [제가 입력한 문장과 비슷한 표현을 추천]
 답변 : [제가 입력한 문장에 대한 당신의 답을 영어로 출력]
-해석 : [당신의 답변에 대한 한국어 해석을 출력]""",
-        "password": "1111"
+해석 : [당신의 답변에 대한 한국어 해석을 출력]"""
     },
     {
         "title": "한식당 챗봇",
@@ -106,8 +104,7 @@ prompts = [
 
 최종 확인 시, 고객이 주문한 메뉴와 해당 메뉴의 가격을 다시 확인하여 오류가 없는지 검토하세요. 메뉴 가격이나 최종 합계 계산이 틀렸다면 수정 후 총 합계를 고객에게 알려줍니다.
 
-최종 주문을 확인한 후 고객에게 픽업인지 배달인지 묻습니다. 배달인 경우 주소를 묻습니다. 마지막으로 결제를 진행합니다. 결제 방식으로는 현금 결제, 신용카드 결제, 모바일 결제가 있습니다. 이 중 고객이 원하는 결제 방식으로 결제를 처리합니다. 대화식이고 친근한 스타일로 간단하게 대답합니다.""",
-        "password": "1111"
+최종 주문을 확인한 후 고객에게 픽업인지 배달인지 묻습니다. 배달인 경우 주소를 묻습니다. 마지막으로 결제를 진행합니다. 결제 방식으로는 현금 결제, 신용카드 결제, 모바일 결제가 있습니다. 이 중 고객이 원하는 결제 방식으로 결제를 처리합니다. 대화식이고 친근한 스타일로 간단하게 대답합니다."""
     },
     {
         "title": "액션 메뉴 만들기",
@@ -124,52 +121,41 @@ prompts = [
     - **절대로 새로운 개요는 만들지 마세요.**
 3. 각 작업(개요 확장 또는 글 작성)이 완료되면, "다음 작업할 글머리 번호를 입력해 주세요."라고 물어보세요.
 
-주제: 지구 온난화의 위험성""",
-        "password": "1111"
+주제: 지구 온난화의 위험성"""
     }
 ]
 
-# 사이드바에 프롬프트 제목 목록(목차) 생성
-st.sidebar.title("프롬프트 목록")
+# 비밀번호 확인
+if 'password_verified' not in st.session_state:
+    st.session_state.password_verified = False
 
-# Markdown 문자열을 생성하여 그룹별로 목록을 구성합니다.
-sidebar_markdown = ""
-# 출력할 그룹 순서를 정의합니다. (코드 그룹은 제외)
-group_order = ["챗봇", "액션"]
+if not st.session_state.password_verified:
+    st.title("A2I 실습 프롬프트")
+    st.markdown("아래에 비밀번호를 입력하시면 모든 프롬프트를 확인하실 수 있습니다.")
+    user_password = st.text_input("비밀번호를 입력하세요:", type="password")
+    if user_password == PASSWORD:
+        st.session_state.password_verified = True
+    elif user_password:
+        st.error("비밀번호가 틀렸습니다!")
 
-for group in group_order:
-    sidebar_markdown += f"- **{group}**\n"
+# 비밀번호가 확인된 경우 프롬프트 출력
+if st.session_state.password_verified:
+    st.sidebar.title("프롬프트 목록")
+    group_order = ["챗봇", "액션"]
+    sidebar_markdown = ""
+
+    for group in group_order:
+        sidebar_markdown += f"- **{group}**\n"
+        for i, item in enumerate(prompts):
+            if item.get("group") == group:
+                sidebar_markdown += f"    - [{item['title']}](#prompt-{i})\n"
+    st.sidebar.markdown(sidebar_markdown, unsafe_allow_html=True)
+
+    st.title("A2I 실습 프롬프트")
+
     for i, item in enumerate(prompts):
-        if item.get("group") == group:
-            # 하위 항목은 들여쓰기(네 칸)로 구분합니다.
-            sidebar_markdown += f"    - [{item['title']}](#prompt-{i})\n"
-
-st.sidebar.markdown(sidebar_markdown, unsafe_allow_html=True)
-
-# 메인 타이틀 (페이지 제목)
-st.title("A2I 실습 프롬프트")
-
-# 각 프롬프트별로 UI 구성 (각 섹션 앞에 앵커를 삽입)
-for i, item in enumerate(prompts):
-    state_key = f"show_prompt_{i}"
-    if state_key not in st.session_state:
-        st.session_state[state_key] = False
-
-    # 앵커 태그 삽입 (목차 링크와 연결)
-    st.markdown(f"<a id='prompt-{i}'></a>", unsafe_allow_html=True)
-    st.write("---")
-    st.subheader(item["title"])
-    
-    # 각 프롬프트마다 개별 비밀번호 입력창
-    user_input = st.text_input("비밀번호를 입력하세요:", type="password", key=f"pwd_input_{i}")
-    
-    if st.button(f"{item['title']} 열기/숨기기", key=f"button_{i}"):
-        if user_input == item["password"]:
-            st.session_state[state_key] = not st.session_state[state_key]
-        else:
-            st.error("비밀번호가 틀렸습니다!")
-    
-    # 프롬프트 표시 시: textwrap.dedent로 불필요한 들여쓰기를 제거한 후 st.code()로 출력
-    if st.session_state[state_key]:
+        st.markdown(f"<a id='prompt-{i}'></a>", unsafe_allow_html=True)
+        st.write("---")
+        st.subheader(item["title"])
         prompt_text = textwrap.dedent(item["prompt"])
         st.code(prompt_text, language="")
