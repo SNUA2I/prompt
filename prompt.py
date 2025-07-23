@@ -147,5 +147,12 @@ if st.session_state.password_verified:
         st.markdown(f"<a id='prompt-{i}'></a>", unsafe_allow_html=True)
         st.write("---")
         st.subheader(item["title"])
-        prompt_text = textwrap.dedent(item["prompt"])
-        st.code(prompt_text, language="")
+        if isinstance(item["prompt"], list):
+            for block in item["prompt"]:
+                # 수정된 부분: 문자열 타입만 처리
+                if isinstance(block, str):
+                    st.code(textwrap.dedent(block), language="")
+                else:
+                    st.code(textwrap.dedent(str(block)), language="")
+        else:
+            st.code(textwrap.dedent(str(item["prompt"])), language="")
